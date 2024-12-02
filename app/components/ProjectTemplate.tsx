@@ -23,15 +23,17 @@ interface ProjectImageProps {
 
 const ProjectImage: React.FC<ProjectImageProps> = ({ src, alt, onClick }) => (
   <div
-    className="flex items-center justify-center w-full cursor-pointer hover:scale-105 transition-transform mb-8"
-    onClick={onClick}>
+    className="cursor-pointer hover:scale-105 transition-transform"
+    onClick={onClick}
+  >
     <Image
       src={src}
       alt={alt}
-      width={600}
-      height={400}
-      className="rounded-lg"
+      width={300}
+      height={200}
+      className="rounded-lg object-cover"
     />
+    <p className="text-sm text-center mt-2">{alt}</p>
   </div>
 );
 
@@ -62,15 +64,21 @@ const ProjectTemplate: React.FC<ProjectTemplateProps> = ({ project }) => {
           <h1 className="text-4xl font-bold mb-4">{project.title}</h1>
           <p className="text-lg mb-8">{project.description}</p>
 
-          {project.images.map((img, idx) => (
-            <ProjectImage
-              key={idx}
-              src={img.src}
-              alt={img.alt}
-              onClick={() => openImageModal(img.src, img.alt)}
-            />
-          ))}
+          {/* Image Gallery */}
+          {project.images && project.images.length > 0 && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+              {project.images.map((img, idx) => (
+                <ProjectImage
+                  key={idx}
+                  src={img.src}
+                  alt={img.alt}
+                  onClick={() => openImageModal(img.src, img.alt)}
+                />
+              ))}
+            </div>
+          )}
 
+          {/* Sections */}
           {project.sections.map((section, idx) => (
             <ProjectSection key={idx} title={section.title}>
               <ul className="list-disc pl-5 mb-8 text-lg">
@@ -82,6 +90,30 @@ const ProjectTemplate: React.FC<ProjectTemplateProps> = ({ project }) => {
           ))}
         </div>
       </div>
+
+      {/* Modal for Enlarged Image */}
+      {isImageModalOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
+          onClick={handleClose}
+        >
+          <div className="relative max-w-6xl p-4">
+            <Image
+              src={image.src}
+              alt={image.alt}
+              width={1200} // Larger width for enlargement
+              height={800} // Larger height for enlargement
+              className="rounded-lg object-cover"
+            />
+            <button
+              className="absolute top-4 right-4 text-white bg-gray-800 p-2 rounded-full hover:bg-gray-600"
+              onClick={handleClose}
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 };

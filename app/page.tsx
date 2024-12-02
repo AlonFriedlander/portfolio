@@ -1,5 +1,5 @@
 import Hero from "./components/Hero";
-import AboutMe from "./components/AboutMe";
+// import AboutMe from "./components/AboutMe";
 import Experience from "./components/Experience";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
@@ -12,15 +12,15 @@ export default function Home() {
         <Hero />
       </section>
 
-      {/* About Section */}
+      {/* About Section
       <section id="about">
         <AboutMe />
-      </section>
+      </section> */}
 
       {/* Experience Section */}
-      <section id="experience">
+      {/* <section id="experience">
         <Experience />
-      </section>
+      </section> */}
 
       {/* Projects Section */}
       <section id="projects">
