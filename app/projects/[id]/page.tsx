@@ -130,7 +130,14 @@ const projects = [
   },
 ];
 
-const ProjectPage = ({ params }: { params: { id: string } }) => {
+// Define the type for the page props
+type PageProps = {
+  params: {
+    id: string;
+  };
+};
+
+const ProjectPage = ({ params }: PageProps) => {
   const project = projects.find((proj) => proj.id === params.id);
 
   if (!project || !project.projectPage) {
@@ -145,3 +152,4 @@ const ProjectPage = ({ params }: { params: { id: string } }) => {
 };
 
 export default ProjectPage;
+
