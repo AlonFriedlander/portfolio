@@ -1,8 +1,13 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { techStack } from "../utils/techStack";
+// import { techStack } from "../utils/techStack";
 import TechIcon from "./TechIcon";
+
+// Update the props type
+interface PageProps {
+  params: Awaited<{ id: string }>;
+}
 
 const projects = [
   {
@@ -52,9 +57,7 @@ const projects = [
     title: "Personal Portfolio Website",
     description:
       "Designed and developed this portfolio website using Next.js, TailwindCSS, and TypeScript. Showcases my projects, skills, and experience with a responsive and visually appealing design.",
-    technologies: [
-      { name: "React", iconName: "react", prefix: "fab" },
-    ],
+    technologies: [{ name: "React", iconName: "react", prefix: "fab" }],
     github: "https://github.com/AlonFriedlander/portfolio",
     live: "https://alonfriedlander.dev",
   },
