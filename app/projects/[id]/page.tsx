@@ -1,7 +1,25 @@
 import React from "react";
+import { Metadata } from "next";
 import ProjectTemplate from "@/app/components/ProjectTemplate";
 
-const projects = [
+// Define a more explicit type for the project
+type ProjectPageData = {
+  id: string;
+  projectPage: {
+    title: string;
+    description: string;
+    sections: {
+      title: string;
+      content: string[];
+    }[];
+    images: {
+      src: string;
+      alt: string;
+    }[];
+  };
+};
+
+const projects: ProjectPageData[] = [
   {
     id: "1",
     projectPage: {
@@ -130,17 +148,19 @@ const projects = [
   },
 ];
 
-// Define the type for the page props
 type PageProps = {
-  params: {
-    id: string;
-  };
+  params:
+    | {
+        id: string;
+      }
+    | Promise<{ id: string }>;
 };
 
-const ProjectPage = ({ params }: PageProps) => {
-  const project = projects.find((proj) => proj.id === params.id);
+const ProjectPage = async ({ params }: PageProps) => {
+  const resolvedParams = await Promise.resolve(params);
+  const project = projects.find((proj) => proj.id === resolvedParams.id);
 
-  if (!project || !project.projectPage) {
+  if (!project) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <p className="text-2xl text-red-500">Project not found!</p>
@@ -152,4 +172,3 @@ const ProjectPage = ({ params }: PageProps) => {
 };
 
 export default ProjectPage;
-
