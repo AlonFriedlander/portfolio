@@ -2,6 +2,12 @@ import React from "react";
 import { Metadata } from "next";
 import ProjectTemplate from "@/app/components/ProjectTemplate";
 
+type PageProps = {
+  params: {
+    id: string;
+  };
+};
+
 // Define a more explicit type for the project
 type ProjectPageData = {
   id: string;
@@ -148,13 +154,6 @@ const projects: ProjectPageData[] = [
   },
 ];
 
-type PageProps = {
-  params: {
-    id: string;
-  };
-};
-
-
 const ProjectPage = ({ params }: PageProps) => {
   const project = projects.find((proj) => proj.id === params.id);
 
@@ -169,13 +168,10 @@ const ProjectPage = ({ params }: PageProps) => {
   return <ProjectTemplate project={project.projectPage} />;
 };
 
-
-
 export async function generateStaticParams() {
   return projects.map((project) => ({
     id: project.id,
   }));
 }
-
 
 export default ProjectPage;
