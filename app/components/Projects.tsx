@@ -4,10 +4,10 @@ import Link from "next/link";
 // import { techStack } from "../utils/techStack";
 import TechIcon from "./TechIcon";
 
-// Update the props type
-interface PageProps {
-  params: Awaited<{ id: string }>;
-}
+// // Update the props type
+// interface PageProps {
+//   params: Awaited<{ id: string }>;
+// }
 
 const projects = [
   {
