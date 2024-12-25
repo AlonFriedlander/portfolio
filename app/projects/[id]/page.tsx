@@ -3,9 +3,9 @@ import { Metadata } from "next";
 import ProjectTemplate from "@/app/components/ProjectTemplate";
 
 type PageProps = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 // Define a more explicit type for the project
@@ -160,7 +160,8 @@ export async function generateStaticParams() {
   }));
 }
 
-const ProjectPage = ({ params }: PageProps) => {
+const ProjectPage = async ({ params }: PageProps) => {
+  const resolvedParams = await params;
   const project = projects.find((proj) => proj.id === params.id);
 
   if (!project) {
