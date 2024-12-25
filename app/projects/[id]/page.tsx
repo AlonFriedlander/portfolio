@@ -162,8 +162,7 @@ export async function generateStaticParams() {
 
 const ProjectPage = async ({ params }: PageProps) => {
   const resolvedParams = await params;
-  const project = projects.find((proj) => proj.id === params.id);
-
+  const project = projects.find((proj) => proj.id === resolvedParams.id);
   if (!project) {
     return (
       <div className="flex items-center justify-center min-h-screen">
