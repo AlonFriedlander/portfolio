@@ -149,16 +149,14 @@ const projects: ProjectPageData[] = [
 ];
 
 type PageProps = {
-  params:
-    | {
-        id: string;
-      }
-    | Promise<{ id: string }>;
+  params: {
+    id: string;
+  };
 };
 
-const ProjectPage = async ({ params }: PageProps) => {
-  const resolvedParams = await Promise.resolve(params);
-  const project = projects.find((proj) => proj.id === resolvedParams.id);
+
+const ProjectPage = ({ params }: PageProps) => {
+  const project = projects.find((proj) => proj.id === params.id);
 
   if (!project) {
     return (
@@ -170,5 +168,14 @@ const ProjectPage = async ({ params }: PageProps) => {
 
   return <ProjectTemplate project={project.projectPage} />;
 };
+
+
+
+export async function generateStaticParams() {
+  return projects.map((project) => ({
+    id: project.id,
+  }));
+}
+
 
 export default ProjectPage;
