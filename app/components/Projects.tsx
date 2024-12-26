@@ -20,7 +20,6 @@ const projects = [
       { name: "Node.js", iconName: "node-js", prefix: "fab" },
       { name: "React", iconName: "react", prefix: "fab" },
       { name: "MongoDB", iconName: "leaf", prefix: "fas" },
-      { name: "DataBase", iconName: "database", prefix: "fas" },
       { name: "Socket.IO", iconName: "network-wired", prefix: "fas" },
     ],
     github: "https://github.com/AlonFriedlander/MusicRehearsalApp",
@@ -47,7 +46,6 @@ const projects = [
     technologies: [
       { name: "C++", iconName: "cuttlefish", prefix: "fab" }, // C++ approximation
       { name: "UDP", iconName: "network-wired", prefix: "fas" },
-      { name: "JSON", iconName: "file-code", prefix: "fas" },
       { name: "CMake", iconName: "tools", prefix: "fas" },
     ],
     github: "https://github.com/AlonFriedlander/DataDistributionExercise",
